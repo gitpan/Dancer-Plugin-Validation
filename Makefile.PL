@@ -20,9 +20,9 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Dancer::Plugin::Validation',
   'PREREQ_PM' => {
-    'Oogly' => '0.09'
+    'Oogly' => '0.11'
   },
-  'VERSION' => '0.01',
+  'VERSION' => '0.02',
   'test' => {
     'TESTS' => ''
   }

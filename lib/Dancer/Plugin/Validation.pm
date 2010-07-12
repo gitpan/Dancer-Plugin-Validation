@@ -1,12 +1,12 @@
 package Dancer::Plugin::Validation;
 BEGIN {
-  $Dancer::Plugin::Validation::VERSION = '0.01';
+  $Dancer::Plugin::Validation::VERSION = '0.02';
 }
 # ABSTRACT: Simple data validation for Dancer applications using Oogly!
 
 use Dancer ':syntax';
 use Dancer::Plugin;
-use Oogly qw/:all/;
+use Oogly  qw(Oogly);
 
 my $settings = plugin_setting;
 
@@ -22,9 +22,11 @@ register validate => sub {
     }
     
     my $i = Oogly( mixins => $settings->{mixins}, fields => $settings->{fields} );
-    my $o = $i->new(request->{params});
+    my $p = request->params;
+    my $o = $i->new($p);
     
     if ($o->validate(@{$fields})) {
+        var( validation => $o );
         true;
     }
     else {
@@ -47,7 +49,7 @@ Dancer::Plugin::Validation - Simple data validation for Dancer applications usin
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
